@@ -1,0 +1,14 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="Afkar:war">
+    <output-path>$PROJECT_DIR$/target</output-path>
+    <properties id="maven-jee-properties">
+      <options>
+        <module>Afkar</module>
+        <packaging>war</packaging>
+      </options>
+    </properties>
+    <root id="archive" name="Afkar-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="Afkar:war exploded" />
+    </root>
+  </artifact>
+</component>
