@@ -1,4 +1,4 @@
-package com.afkar.Afkar;
+package com.afkar.controllers;
 
 import java.io.*;
 import javax.servlet.http.*;

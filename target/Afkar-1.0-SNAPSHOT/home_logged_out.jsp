@@ -5,9 +5,7 @@
     <title>JSP - Hello World</title>
 </head>
 <body>
-<h1><%= "Hello World!" %>
-</h1>
-<br/>
-<a href="hello-servlet">Hello Servlet</a>
+<h1>Welcome to the index page!!!</h1>
+<p>You're NOT connected. Please <a href="login">Login</a> or <a href="register">Register</a>   </p>
 </body>
 </html>
