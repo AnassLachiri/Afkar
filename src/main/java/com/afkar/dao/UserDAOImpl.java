@@ -4,7 +4,7 @@ import com.afkar.models.User;
 import java.sql.*;
 import static com.afkar.dao.DAOUtils.close;
 import static com.afkar.dao.DAOUtils.prepareStatement;
-import static com.afkar.dao.DAOUtils.map;
+import static com.afkar.dao.DAOUtils.mapUser;
 
 
 public class UserDAOImpl implements UserDAO{
@@ -55,7 +55,7 @@ public class UserDAOImpl implements UserDAO{
             preparedStatement = prepareStatement( connexion, SQL_SELECT_PAR_ID, false, String.valueOf(id) );
             resultSet = preparedStatement.executeQuery();
             if ( resultSet.next() ) {
-                user = map( resultSet );
+                user = mapUser( resultSet );
             }
         } catch ( SQLException e ) {
             throw new DAOException( e );
@@ -78,7 +78,7 @@ public class UserDAOImpl implements UserDAO{
             preparedStatement = prepareStatement( connexion, SQL_SELECT_PAR_USERNAME, false, username );
             resultSet = preparedStatement.executeQuery();
             if ( resultSet.next() ) {
-                user = map( resultSet );
+                user = mapUser( resultSet );
             }
         } catch ( SQLException e ) {
             throw new DAOException( e );
