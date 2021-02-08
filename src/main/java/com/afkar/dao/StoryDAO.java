@@ -7,4 +7,5 @@ public interface StoryDAO {
 
     Story find( long id ) throws DAOException;
 
+    Story find( String uuid ) throws DAOException;
 }

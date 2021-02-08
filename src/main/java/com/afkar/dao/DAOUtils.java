@@ -28,6 +28,7 @@ public class DAOUtils {
 
     public static Story mapStory(ResultSet resultSet ) throws SQLException {
         Story story = new Story(resultSet.getLong( "id" ));
+        story.setUuid( resultSet.getString( "uuid" ) );
         story.setUser_id( resultSet.getLong( "user_id" ) );
         story.setTitle( resultSet.getString( "title" ) );
         story.setSubtitle( resultSet.getString( "subtitle" ) );

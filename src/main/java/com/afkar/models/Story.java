@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 
 public class Story {
     private long id;
+    private String uuid;
     private long user_id;
     private String title;
     private String subtitle;
@@ -12,7 +13,13 @@ public class Story {
     private String keywords;
     private Timestamp created_at;
 
+    public String getUuid() {
+        return uuid;
+    }
 
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
+    }
 
     public Story(long id) {
         this.id = id;

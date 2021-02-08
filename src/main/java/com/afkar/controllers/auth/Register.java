@@ -1,5 +1,6 @@
 package com.afkar.controllers.auth;
 
+import com.afkar.Utils;
 import com.afkar.dao.DAOFactory;
 import com.afkar.dao.UserDAO;
 import com.afkar.models.User;
@@ -29,7 +30,7 @@ public class Register extends HttpServlet {
             return;
         }
         // User not connected
-        resp.sendRedirect(req.getContextPath() + "/register.jsp");
+        this.getServletContext().getRequestDispatcher("/register.jsp").forward(req, resp);
     }
 
     @Override
@@ -45,14 +46,24 @@ public class Register extends HttpServlet {
                 password1!=null && !password1.isEmpty() &&
                 password2!=null && !password2.isEmpty()){
             if(!password1.equals(password2)){
-                req.getSession().setAttribute("register_error", "Entered passwords are different");
-                resp.sendRedirect(req.getContextPath() + "/register.jsp");
+                req.getSession().setAttribute("register_error", "Passwords should be the same. Try again!");
+                this.getServletContext().getRequestDispatcher("/register.jsp").forward(req, resp);
                 return;
             }
 
+            password1 = Utils.hash(password1);
+
             DAOFactory daoFactory = DAOFactory.getInstance();
             UserDAO userDAO = daoFactory.getUserDao();
-            User user = new User(0);
+            User user = null;
+            user = userDAO.find(username);
+            if(user != null){ //
+                req.getSession().setAttribute("register_error", "Username already used. Try another one!");
+                this.getServletContext().getRequestDispatcher("/register.jsp").forward(req, resp);
+                return;
+            }
+
+            user = new User(0);
             user.setUsername(username);
             user.setEmail(email);
             user.setPassword(password1);
@@ -68,7 +79,7 @@ public class Register extends HttpServlet {
 
         }
         req.getSession().setAttribute("register_error", "Something went wrong!!");
-        resp.sendRedirect(req.getContextPath() + "/register.jsp");
+        this.getServletContext().getRequestDispatcher("/register.jsp").forward(req, resp);
     }
 
     @Override

@@ -16,6 +16,7 @@
         <element id="directory" name="lib">
           <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.12" />
           <element id="library" level="project" name="Maven: com.google.protobuf:protobuf-java:2.6.0" />
+          <element id="library" level="project" name="Maven: com.fasterxml.uuid:java-uuid-generator:3.1.4" />
         </element>
       </element>
       <element id="directory" name="META-INF">

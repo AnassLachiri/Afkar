@@ -65,4 +65,13 @@ public class DAOFactory {
     public UserDAO getUserDao() {
         return new UserDAOImpl( this );
     }
+    public StoryDAO getStoryDao() {
+        return new StoryDAOImpl( this );
+    }
+    public CommentDAO getCommentDao() {
+        return new CommentDAOImpl( this );
+    }
+    public ReplyDAO getReplyDao() {
+        return new ReplyDAOImpl( this );
+    }
 }

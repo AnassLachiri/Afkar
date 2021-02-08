@@ -1,5 +1,6 @@
 package com.afkar.controllers.auth;
 
+import com.afkar.Utils;
 import com.afkar.dao.DAOFactory;
 import com.afkar.dao.UserDAO;
 import com.afkar.dao.UserDAOImpl;
@@ -28,7 +29,7 @@ public class Login extends HttpServlet {
             return;
         }
         // User not connected
-        resp.sendRedirect(req.getContextPath() + "/login.jsp");
+        this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -42,6 +43,10 @@ public class Login extends HttpServlet {
         if(username!=null && !username.isEmpty() &&
                 password!=null && !password.isEmpty()){
             user = userDAO.find(username);
+
+            //hash the password before comparing it!!
+            password = Utils.hash(password);
+
             if(user != null){
                 if (user.getPassword().equals(password)){
                     HttpSession httpSession = req.getSession();
@@ -53,7 +58,7 @@ public class Login extends HttpServlet {
             }
         }
         req.getSession().setAttribute("login_error", "Something went wrong!!");
-        resp.sendRedirect(req.getContextPath() + "/login.jsp");
+        this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
 
     }
 

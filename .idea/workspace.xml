@@ -21,6 +21,7 @@
         <option value="Jsp File" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -41,6 +42,8 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com/afkar" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/java/com/afkar/models" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="settings.editor.selected.configurable" value="configurable.group.other" />
   </component>
   <component name="RecentsManager">

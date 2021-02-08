@@ -12,8 +12,9 @@ import static com.afkar.dao.DAOUtils.*;
 
 public class StoryDAOImpl implements StoryDAO{
     private final DAOFactory daoFactory;
-    private static final String SQL_SELECT_PAR_ID = "SELECT id, user_id, title, subtitle, content, total_likes, keywords, created_at FROM stories WHERE id = ?";
-    private static final String SQL_INSERT = "INSERT INTO stories (user_id, title, subtitle, content, total_likes, keywords, created_at) VALUES (?, ?, ?, ?, 0, ?, NOW())";
+    private static final String SQL_SELECT_PAR_ID = "SELECT id, uuid, user_id, title, subtitle, content, total_likes, keywords, created_at FROM stories WHERE id = ?";
+    private static final String SQL_SELECT_PAR_UUID = "SELECT id, uuid, user_id, title, subtitle, content, total_likes, keywords, created_at FROM stories WHERE uuid = ?";
+    private static final String SQL_INSERT = "INSERT INTO stories (uuid, user_id, title, subtitle, content, total_likes, keywords, created_at) VALUES (?, ?, ?, ?, ?, 0, ?, NOW())";
 
     public StoryDAOImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -27,7 +28,7 @@ public class StoryDAOImpl implements StoryDAO{
 
         try {
             connexion = daoFactory.getConnection();
-            preparedStatement = prepareStatement( connexion, SQL_INSERT, true, story.getUser_id(), story.getTitle(), story.getSubtitle() , story.getContent(), story.getKeywords());
+            preparedStatement = prepareStatement( connexion, SQL_INSERT, true, story.getUuid(), story.getUser_id(), story.getTitle(), story.getSubtitle() , story.getContent(), story.getKeywords());
             int status = preparedStatement.executeUpdate();
             if ( status == 0 ) {
                 throw new DAOException( "Error while creating the user, No line added to the table." );
@@ -55,6 +56,29 @@ public class StoryDAOImpl implements StoryDAO{
         try {
             connexion = daoFactory.getConnection();
             preparedStatement = prepareStatement( connexion, SQL_SELECT_PAR_ID, false, String.valueOf(id) );
+            resultSet = preparedStatement.executeQuery();
+            if ( resultSet.next() ) {
+                story = mapStory( resultSet );
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            close( resultSet, preparedStatement, connexion );
+        }
+
+        return story;
+    }
+
+    @Override
+    public Story find(String uuid) throws DAOException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Story story = null;
+
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = prepareStatement( connexion, SQL_SELECT_PAR_UUID, false, String.valueOf(uuid) );
             resultSet = preparedStatement.executeQuery();
             if ( resultSet.next() ) {
                 story = mapStory( resultSet );
