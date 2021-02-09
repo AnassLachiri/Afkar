@@ -1,5 +1,7 @@
 package com.afkar.dao;
 
+import com.afkar.models.Comment;
+import com.afkar.models.Reply;
 import com.afkar.models.Story;
 import com.afkar.models.User;
 
@@ -7,6 +9,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import static com.afkar.dao.DAOUtils.*;
 
@@ -118,6 +122,16 @@ public class StoryDAOImpl implements StoryDAO{
     public void delete(String uuid) throws DAOException {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
+
+        DAOFactory daoFactory = DAOFactory.getInstance();
+        CommentDAO commentDAO = daoFactory.getCommentDao();
+        StoryDAO storyDAO = daoFactory.getStoryDao();
+
+        Story story = storyDAO.find(uuid);
+
+        for(Comment comment: commentDAO.findComments(story.getId())){
+            commentDAO.delete(comment.getId());
+        }
 
         try {
             connexion = daoFactory.getConnection();

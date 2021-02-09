@@ -40,7 +40,7 @@
             <button type="submit">Submit</button>
         </form>
         <% if(((HashMap<Long, ArrayList<Reply>>) request.getAttribute("replies")).get(comment.getId()).size() > 0){ %>
-            <div class="replies" style="border-left: 10px solid rgba(255, 0, 0, 0.5);padding-left: 15px;">
+            <div class="replies" style="border-left: 10px solid rgba(255,0,0,0.5);padding-left: 15px;">
 
             <% for(Reply reply : ((HashMap<Long, ArrayList<Reply>>) request.getAttribute("replies")).get(comment.getId())){%>
                 <div class="reply" style="border-left: 5px solid rgba(0, 255, 0, 0.5);padding-left: 10px;">
