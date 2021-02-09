@@ -7,7 +7,6 @@ public class Comment {
     private long story_id;
     private long user_id;
     private String content;
-    private long total_likes;
     private Timestamp created_at;
 
     public Comment(long id) {
@@ -44,14 +43,6 @@ public class Comment {
 
     public void setContent(String content) {
         this.content = content;
-    }
-
-    public long getTotal_likes() {
-        return total_likes;
-    }
-
-    public void setTotal_likes(long total_likes) {
-        this.total_likes = total_likes;
     }
 
     public Timestamp getCreated_at() {

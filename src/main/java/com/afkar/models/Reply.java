@@ -7,7 +7,6 @@ public class Reply {
     private long comment_id;
     private long user_id;
     private String content;
-    private long total_likes;
     private Timestamp created_at;
 
 
@@ -48,13 +47,6 @@ public class Reply {
         this.content = content;
     }
 
-    public long getTotal_likes() {
-        return total_likes;
-    }
-
-    public void setTotal_likes(long total_likes) {
-        this.total_likes = total_likes;
-    }
 
     public Timestamp getCreated_at() {
         return created_at;

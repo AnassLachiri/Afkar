@@ -16,7 +16,7 @@
     <br>
     <form action="login" method="post">
         <div class="container">
-            <label ><b>Username</b></label>
+            <label><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
 
             <label ><b>Password</b></label>

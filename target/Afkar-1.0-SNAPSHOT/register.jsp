@@ -3,7 +3,9 @@
 <html>
 <head>
     <title>Register</title>
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+        <%@ include file="css/style.css"%>
+    </style>
 
 </head>
 <body>

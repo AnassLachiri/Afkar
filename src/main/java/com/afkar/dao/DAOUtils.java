@@ -33,8 +33,8 @@ public class DAOUtils {
         story.setTitle( resultSet.getString( "title" ) );
         story.setSubtitle( resultSet.getString( "subtitle" ) );
         story.setContent( resultSet.getString( "content" ) );
-        story.setTotal_likes( resultSet.getLong( "content" ) );
-        story.setKeywords( resultSet.getString( "content" ) );
+        story.setTotal_likes( resultSet.getLong( "total_likes" ) );
+        story.setKeywords( resultSet.getString( "keywords" ) );
         story.setCreated_at( resultSet.getTimestamp( "created_at" ) );
         return story;
     }
@@ -44,7 +44,6 @@ public class DAOUtils {
         comment.setStory_id( resultSet.getLong( "story_id" ) );
         comment.setUser_id( resultSet.getLong( "user_id" ) );
         comment.setContent( resultSet.getString( "content" ) );
-        comment.setTotal_likes( resultSet.getLong( "total_likes" ) );
         comment.setCreated_at( resultSet.getTimestamp( "created_at" ) );
         return comment;
     }
@@ -54,7 +53,6 @@ public class DAOUtils {
         reply.setComment_id( resultSet.getLong( "comment_id" ) );
         reply.setUser_id( resultSet.getLong( "user_id" ) );
         reply.setContent( resultSet.getString( "content" ) );
-        reply.setTotal_likes( resultSet.getLong( "total_likes" ) );
         reply.setCreated_at( resultSet.getTimestamp( "created_at" ) );
         return reply;
     }

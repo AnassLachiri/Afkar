@@ -42,5 +42,79 @@
         <url-pattern>/register</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>StoryCreate</servlet-name>
+        <servlet-class>com.afkar.controllers.story.StoryCreate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StoryCreate</servlet-name>
+        <url-pattern>/story_create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StoryIndex</servlet-name>
+        <servlet-class>com.afkar.controllers.story.StoryIndex</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StoryIndex</servlet-name>
+        <url-pattern>/story</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StoryDelete</servlet-name>
+        <servlet-class>com.afkar.controllers.story.StoryDelete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StoryDelete</servlet-name>
+        <url-pattern>/story_delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StoryUpdate</servlet-name>
+        <servlet-class>com.afkar.controllers.story.StoryUpdate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StoryUpdate</servlet-name>
+        <url-pattern>/story_update</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CommentCreate</servlet-name>
+        <servlet-class>com.afkar.controllers.comment.CommentCreate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CommentCreate</servlet-name>
+        <url-pattern>/comment_create</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>CommentDelete</servlet-name>
+        <servlet-class>com.afkar.controllers.comment.CommentDelete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CommentDelete</servlet-name>
+        <url-pattern>/comment_delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReplyDelete</servlet-name>
+        <servlet-class>com.afkar.controllers.reply.ReplyDelete</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReplyDelete</servlet-name>
+        <url-pattern>/reply_delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>ReplyCreate</servlet-name>
+        <servlet-class>com.afkar.controllers.reply.ReplyCreate</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ReplyCreate</servlet-name>
+        <url-pattern>/reply_create</url-pattern>
+    </servlet-mapping>
+
+
+
 
 </web-app>

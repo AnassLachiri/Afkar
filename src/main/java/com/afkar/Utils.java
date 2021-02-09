@@ -9,7 +9,7 @@ import java.util.UUID;
 public class Utils {
     public static String generateUUID(){
         UUID uuid = Generators.timeBasedGenerator().generate();
-        return uuid.toString();
+        return hash(uuid.toString());
     }
 
     public static String hash(String inputString){

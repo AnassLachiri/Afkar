@@ -15,6 +15,8 @@ public class StoryDAOImpl implements StoryDAO{
     private static final String SQL_SELECT_PAR_ID = "SELECT id, uuid, user_id, title, subtitle, content, total_likes, keywords, created_at FROM stories WHERE id = ?";
     private static final String SQL_SELECT_PAR_UUID = "SELECT id, uuid, user_id, title, subtitle, content, total_likes, keywords, created_at FROM stories WHERE uuid = ?";
     private static final String SQL_INSERT = "INSERT INTO stories (uuid, user_id, title, subtitle, content, total_likes, keywords, created_at) VALUES (?, ?, ?, ?, ?, 0, ?, NOW())";
+    private static final String SQL_UPDATE = "UPDATE stories SET title = ?, subtitle = ?, content = ?, keywords = ? WHERE uuid = ?";
+    private static final String SQL_DELETE_PAR_UUID = "DELETE FROM stories WHERE uuid = ?";
 
     public StoryDAOImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -47,6 +49,25 @@ public class StoryDAOImpl implements StoryDAO{
     }
 
     @Override
+    public void update(Story story) throws DAOException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = prepareStatement( connexion, SQL_UPDATE, true, story.getTitle(), story.getSubtitle() , story.getContent(), story.getKeywords(), story.getUuid());
+            int status = preparedStatement.executeUpdate();
+            if ( status == 0 ) {
+                throw new DAOException( "Error while creating the user, No line added to the table." );
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            close( preparedStatement, connexion );
+        }
+    }
+
+    @Override
     public Story find(long id) throws DAOException {
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
@@ -69,6 +90,7 @@ public class StoryDAOImpl implements StoryDAO{
         return story;
     }
 
+
     @Override
     public Story find(String uuid) throws DAOException {
         Connection connexion = null;
@@ -90,5 +112,24 @@ public class StoryDAOImpl implements StoryDAO{
         }
 
         return story;
+    }
+
+    @Override
+    public void delete(String uuid) throws DAOException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = prepareStatement( connexion, SQL_DELETE_PAR_UUID, true, uuid);
+            int status = preparedStatement.executeUpdate();
+            if ( status == 0 ) {
+                throw new DAOException( "Error while creating the user, No line added to the table." );
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            close( preparedStatement, connexion );
+        }
     }
 }
