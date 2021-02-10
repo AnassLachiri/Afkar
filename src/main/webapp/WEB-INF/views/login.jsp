@@ -4,7 +4,7 @@
 <head>
     <title>Login</title>
     <style>
-        <%@ include file="css/style.css"%>
+        <%@ include file="../../css/style.css"%>
     </style>
 </head>
 <body>

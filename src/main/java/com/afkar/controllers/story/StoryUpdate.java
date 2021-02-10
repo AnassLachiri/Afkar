@@ -54,7 +54,7 @@ public class StoryUpdate extends HttpServlet {
             req.setAttribute("uuid", story.getUuid());
 
             // User logged in
-            this.getServletContext().getRequestDispatcher("/story_update.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/story_update.jsp").forward(req, resp);
             return;
         }
         // User logged out
@@ -71,7 +71,7 @@ public class StoryUpdate extends HttpServlet {
 
         if(title == null || subtitle == null || content == null || keywords == null){
             req.setAttribute("story_update_error", "All inputs should be filled!!");
-            this.getServletContext().getRequestDispatcher("/story_update.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/story_update.jsp").forward(req, resp);
             return;
         }
 

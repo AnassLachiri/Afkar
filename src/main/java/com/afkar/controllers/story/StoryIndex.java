@@ -67,7 +67,7 @@ public class StoryIndex extends HttpServlet {
 
             req.setAttribute("comments", comments);
             req.setAttribute("replies", replies);
-            this.getServletContext().getRequestDispatcher("/story.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/story.jsp").forward(req, resp);
             return;
         }
         // User logged out

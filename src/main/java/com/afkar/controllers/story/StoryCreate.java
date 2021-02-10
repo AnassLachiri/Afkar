@@ -25,7 +25,7 @@ public class StoryCreate extends HttpServlet {
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         if(userLoggedIn(req.getSession())){
             // User logged in
-            this.getServletContext().getRequestDispatcher("/story_create.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/story_create.jsp").forward(req, resp);
             return;
         }
         // User logged out
@@ -41,7 +41,7 @@ public class StoryCreate extends HttpServlet {
 
         if(title == null || subtitle == null || content == null || keywords == null){
             req.setAttribute("story_create_error", "All inputs should be filled!!");
-            this.getServletContext().getRequestDispatcher("/story_create.jsp").forward(req, resp);
+            this.getServletContext().getRequestDispatcher("/WEB-INF/views/story_create.jsp").forward(req, resp);
             return;
         }
 

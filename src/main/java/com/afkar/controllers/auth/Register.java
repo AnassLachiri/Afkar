@@ -30,7 +30,7 @@ public class Register extends HttpServlet {
             return;
         }
         // User not connected
-        this.getServletContext().getRequestDispatcher("/register.jsp").forward(req, resp);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/register.jsp").forward(req, resp);
     }
 
     @Override
@@ -47,7 +47,7 @@ public class Register extends HttpServlet {
                 password2!=null && !password2.isEmpty()){
             if(!password1.equals(password2)){
                 req.getSession().setAttribute("register_error", "Passwords should be the same. Try again!");
-                this.getServletContext().getRequestDispatcher("/register.jsp").forward(req, resp);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/views/register.jsp").forward(req, resp);
                 return;
             }
 
@@ -59,7 +59,7 @@ public class Register extends HttpServlet {
             user = userDAO.find(username);
             if(user != null){ //
                 req.getSession().setAttribute("register_error", "Username already used. Try another one!");
-                this.getServletContext().getRequestDispatcher("/register.jsp").forward(req, resp);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/views/register.jsp").forward(req, resp);
                 return;
             }
 
@@ -79,7 +79,7 @@ public class Register extends HttpServlet {
 
         }
         req.getSession().setAttribute("register_error", "Something went wrong!!");
-        this.getServletContext().getRequestDispatcher("/register.jsp").forward(req, resp);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/register.jsp").forward(req, resp);
     }
 
     @Override

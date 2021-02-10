@@ -21,6 +21,8 @@ public class StoryDAOImpl implements StoryDAO{
     private static final String SQL_INSERT = "INSERT INTO stories (uuid, user_id, title, subtitle, content, total_likes, keywords, created_at) VALUES (?, ?, ?, ?, ?, 0, ?, NOW())";
     private static final String SQL_UPDATE = "UPDATE stories SET title = ?, subtitle = ?, content = ?, keywords = ? WHERE uuid = ?";
     private static final String SQL_DELETE_PAR_UUID = "DELETE FROM stories WHERE uuid = ?";
+    private static final String SQL_SELECT_ALL_STORIES_BY_ID = "SELECT * FROM stories ORDER BY created_at DESC LIMIT ? OFFSET ? ";
+    private static final String SQL_SELECT_PROFILE_STORIES_BY_ID = "SELECT * FROM stories WHERE user_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ? ";
 
     public StoryDAOImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -145,5 +147,74 @@ public class StoryDAOImpl implements StoryDAO{
         } finally {
             close( preparedStatement, connexion );
         }
+    }
+
+    @Override
+    public ArrayList<Story> findAllStories(long page_count) throws DAOException {
+        if(page_count <= 1) page_count = 1;
+        long limit = 10;
+        long offset = limit * ( page_count -1 );
+
+        ArrayList<Story> stories = new ArrayList<Story>();
+
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Story story = null;
+
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = prepareStatement( connexion, SQL_SELECT_ALL_STORIES_BY_ID, false, limit, offset );
+            resultSet = preparedStatement.executeQuery();
+            if ( resultSet.next() ) {
+                do {
+                    story = mapStory(resultSet);
+                    stories.add(story);
+                }while(resultSet.next());
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            close( resultSet, preparedStatement, connexion );
+        }
+
+        return stories;
+
+    }
+
+    @Override
+    public ArrayList<Story> findProfileStories(String username, long page_count) throws DAOException {
+        if(page_count <= 1) page_count = 1;
+        long limit = 10;
+        long offset = limit * ( page_count -1 );
+
+        ArrayList<Story> stories = new ArrayList<Story>();
+
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        Story story = null;
+
+        DAOFactory daoFactory = DAOFactory.getInstance();
+        UserDAO userDAO = daoFactory.getUserDao();
+        User user = userDAO.find(username);
+        if(user != null) {
+            try {
+                connexion = daoFactory.getConnection();
+                preparedStatement = prepareStatement(connexion, SQL_SELECT_PROFILE_STORIES_BY_ID, false, user.getId(), limit, offset);
+                resultSet = preparedStatement.executeQuery();
+                if (resultSet.next()) {
+                    do {
+                        story = mapStory(resultSet);
+                        stories.add(story);
+                    } while (resultSet.next());
+                }
+            } catch (SQLException e) {
+                throw new DAOException(e);
+            } finally {
+                close(resultSet, preparedStatement, connexion);
+            }
+        }
+        return stories;
     }
 }

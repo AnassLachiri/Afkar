@@ -29,7 +29,7 @@ public class Login extends HttpServlet {
             return;
         }
         // User not connected
-        this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
     }
 
     @Override
@@ -58,7 +58,7 @@ public class Login extends HttpServlet {
             }
         }
         req.getSession().setAttribute("login_error", "Something went wrong!!");
-        this.getServletContext().getRequestDispatcher("/login.jsp").forward(req, resp);
+        this.getServletContext().getRequestDispatcher("/WEB-INF/views/login.jsp").forward(req, resp);
 
     }
 
