@@ -6,6 +6,7 @@ public class Story {
     private long id;
     private String uuid;
     private long user_id;
+    private String image;
     private String title;
     private String subtitle;
     private String content;
@@ -87,5 +88,13 @@ public class Story {
 
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

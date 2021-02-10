@@ -16,9 +16,9 @@ import static com.afkar.dao.DAOUtils.*;
 
 public class StoryDAOImpl implements StoryDAO{
     private final DAOFactory daoFactory;
-    private static final String SQL_SELECT_PAR_ID = "SELECT id, uuid, user_id, title, subtitle, content, total_likes, keywords, created_at FROM stories WHERE id = ?";
-    private static final String SQL_SELECT_PAR_UUID = "SELECT id, uuid, user_id, title, subtitle, content, total_likes, keywords, created_at FROM stories WHERE uuid = ?";
-    private static final String SQL_INSERT = "INSERT INTO stories (uuid, user_id, title, subtitle, content, total_likes, keywords, created_at) VALUES (?, ?, ?, ?, ?, 0, ?, NOW())";
+    private static final String SQL_SELECT_PAR_ID = "SELECT * FROM stories WHERE id = ?";
+    private static final String SQL_SELECT_PAR_UUID = "SELECT * FROM stories WHERE uuid = ?";
+    private static final String SQL_INSERT = "INSERT INTO stories (image, uuid, user_id, title, subtitle, content, total_likes, keywords, created_at) VALUES (?, ?, ?, ?, ?, ?, 0, ?, NOW())";
     private static final String SQL_UPDATE = "UPDATE stories SET title = ?, subtitle = ?, content = ?, keywords = ? WHERE uuid = ?";
     private static final String SQL_DELETE_PAR_UUID = "DELETE FROM stories WHERE uuid = ?";
     private static final String SQL_SELECT_ALL_STORIES_BY_ID = "SELECT * FROM stories ORDER BY created_at DESC LIMIT ? OFFSET ? ";
@@ -36,7 +36,7 @@ public class StoryDAOImpl implements StoryDAO{
 
         try {
             connexion = daoFactory.getConnection();
-            preparedStatement = prepareStatement( connexion, SQL_INSERT, true, story.getUuid(), story.getUser_id(), story.getTitle(), story.getSubtitle() , story.getContent(), story.getKeywords());
+            preparedStatement = prepareStatement( connexion, SQL_INSERT, true, story.getImage(), story.getUuid(), story.getUser_id(), story.getTitle(), story.getSubtitle() , story.getContent(), story.getKeywords());
             int status = preparedStatement.executeUpdate();
             if ( status == 0 ) {
                 throw new DAOException( "Error while creating the user, No line added to the table." );

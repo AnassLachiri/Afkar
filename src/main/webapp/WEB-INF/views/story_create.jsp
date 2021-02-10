@@ -10,9 +10,11 @@
 <h3><%= request.getAttribute("story_create_error") %></h3>
 <% } %>
 
-<form action="story_create" method="post">
+<form action="story_create" method="post" enctype="multipart/form-data">
     <label>Title : </label><br>
     <input type="text" name="title"><br>
+    <label ><b>Image</b></label>
+    <input type="file" name="image" accept="image/*" required>
     <label>Subtitle : </label><br>
     <input type="text" name="subtitle"><br>
     <label>Keywords (separated by colons) : </label><br>

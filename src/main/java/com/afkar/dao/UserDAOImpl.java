@@ -9,9 +9,9 @@ import static com.afkar.dao.DAOUtils.mapUser;
 
 public class UserDAOImpl implements UserDAO{
     private final DAOFactory daoFactory;
-    private static final String SQL_SELECT_PAR_ID = "SELECT id, email, username, password, created_at FROM users WHERE id = ?";
-    private static final String SQL_SELECT_PAR_USERNAME = "SELECT id, email, username, password, created_at FROM users WHERE username = ?";
-    private static final String SQL_INSERT = "INSERT INTO users (email, password, username, created_at) VALUES (?, ?, ?, NOW())";
+    private static final String SQL_SELECT_PAR_ID = "SELECT * FROM users WHERE id = ?";
+    private static final String SQL_SELECT_PAR_USERNAME = "SELECT * FROM users WHERE username = ?";
+    private static final String SQL_INSERT = "INSERT INTO users (image, email, password, username, created_at) VALUES (?, ?, ?, ?, NOW())";
 
     public UserDAOImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -25,7 +25,7 @@ public class UserDAOImpl implements UserDAO{
 
         try {
             connexion = daoFactory.getConnection();
-            preparedStatement = prepareStatement( connexion, SQL_INSERT, true, user.getEmail(), user.getPassword(), user.getUsername() );
+            preparedStatement = prepareStatement( connexion, SQL_INSERT, true, user.getImage(), user.getEmail(), user.getPassword(), user.getUsername() );
             int status = preparedStatement.executeUpdate();
             if ( status == 0 ) {
                 throw new DAOException( "Error while creating the user, No line added to the table." );

@@ -4,6 +4,7 @@
          xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
          version="4.0">
 
+
     <servlet>
         <servlet-name>Home</servlet-name>
         <servlet-class>com.afkar.controllers.Home</servlet-class>
@@ -121,6 +122,25 @@
     <servlet-mapping>
         <servlet-name>Profile</servlet-name>
         <url-pattern>/profile</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>UploadImage</servlet-name>
+        <servlet-class>com.afkar.controllers.UploadImage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>UploadImage</servlet-name>
+        <url-pattern>/upload_image</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DownloadImage</servlet-name>
+        <servlet-class>com.afkar.controllers.DownloadImage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownloadImage</servlet-name>
+        <url-pattern>/download_image</url-pattern>
     </servlet-mapping>
 
 

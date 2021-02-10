@@ -6,15 +6,16 @@ import com.afkar.dao.UserDAO;
 import com.afkar.models.User;
 
 import javax.servlet.ServletException;
-import javax.servlet.http.HttpServlet;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
+import javax.servlet.http.*;
+import java.io.File;
 import java.io.IOException;
 import static com.afkar.middlewares.Auth.userLoggedIn;
 
 
 public class Register extends HttpServlet {
+    public static final String UPLOAD_DIRECTORY = "/profile_images";
+    public String uploadPath;
+
     public String username = null;
     @Override
     public void init() throws ServletException {
@@ -63,10 +64,22 @@ public class Register extends HttpServlet {
                 return;
             }
 
+            uploadPath = getServletContext().getRealPath("") + File.separator + UPLOAD_DIRECTORY;
+            File uploadDir = new File( uploadPath );
+            if ( ! uploadDir.exists() ) uploadDir.mkdir();
+
+            String fileName;
+
+            Part part = req.getPart("image");
+            fileName = Utils.generateUUID()+ part.getSubmittedFileName();
+            part.write(uploadPath + File.separator + fileName);
+
+
             user = new User(0);
             user.setUsername(username);
             user.setEmail(email);
             user.setPassword(password1);
+            user.setImage(fileName);
 
             userDAO.create(user);
 

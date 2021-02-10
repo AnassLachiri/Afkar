@@ -19,6 +19,7 @@ public class DAOUtils {
 
     public static User mapUser(ResultSet resultSet ) throws SQLException {
         User user = new User(resultSet.getLong( "id" ));
+        user.setImage( resultSet.getString( "image" ) );
         user.setEmail( resultSet.getString( "email" ) );
         user.setPassword( resultSet.getString( "password" ) );
         user.setUsername( resultSet.getString( "username" ) );
@@ -30,6 +31,7 @@ public class DAOUtils {
         Story story = new Story(resultSet.getLong( "id" ));
         story.setUuid( resultSet.getString( "uuid" ) );
         story.setUser_id( resultSet.getLong( "user_id" ) );
+        story.setImage( resultSet.getString( "image" ) );
         story.setTitle( resultSet.getString( "title" ) );
         story.setSubtitle( resultSet.getString( "subtitle" ) );
         story.setContent( resultSet.getString( "content" ) );

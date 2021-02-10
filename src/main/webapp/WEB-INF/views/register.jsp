@@ -16,10 +16,13 @@
         <h3><%= session.getAttribute("register_error") %></h3>
     <% } %>
     <br>
-    <form action="register" method="post">
+    <form action="register" method="post" enctype="multipart/form-data">
         <div class="container">
             <label ><b>Username</b></label>
             <input type="text" placeholder="Enter Username" name="username" required>
+
+            <label ><b>Image</b></label>
+            <input type="file" name="image" accept="image/*" required>
 
             <label ><b>Email</b></label>
             <input type="email" placeholder="Enter Password" name="email" required>

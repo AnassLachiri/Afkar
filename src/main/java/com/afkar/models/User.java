@@ -5,6 +5,7 @@ import java.sql.Timestamp;
 public class User {
     private long id;
     private String username;
+    private String image;
     private String email;
     private String password;
     private Timestamp created_at;
@@ -53,5 +54,13 @@ public class User {
 
     public void setCreated_at(Timestamp created_at) {
         this.created_at = created_at;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
