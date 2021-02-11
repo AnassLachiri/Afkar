@@ -2,7 +2,9 @@ package com.afkar.controllers.user;
 
 import com.afkar.dao.DAOFactory;
 import com.afkar.dao.StoryDAO;
+import com.afkar.dao.UserDAO;
 import com.afkar.models.Story;
+import com.afkar.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -34,18 +36,26 @@ public class Profile extends HttpServlet {
 
             DAOFactory daoFactory = DAOFactory.getInstance();
             StoryDAO storyDAO = daoFactory.getStoryDao();
+            UserDAO userDAO = daoFactory.getUserDao();
+
             ArrayList<Story> stories = new ArrayList<Story>();
 
-            stories = storyDAO.findProfileStories(username, page_count);
+            User user = userDAO.find(username);
+            if(user != null) {
 
-            req.setAttribute("stories", stories);
-            req.setAttribute("page", page_count);
-            req.setAttribute("username", username);
+                stories = storyDAO.findProfileStories(username, page_count);
+
+                req.setAttribute("stories", stories);
+                req.setAttribute("page", page_count);
+                req.setAttribute("username", username);
+                req.setAttribute("user", user);
 
 
-
-            // User logged in
-            this.getServletContext().getRequestDispatcher("/WEB-INF/views/profile.jsp").forward(req, resp);
+                // User logged in
+                this.getServletContext().getRequestDispatcher("/WEB-INF/views/profile.jsp").forward(req, resp);
+                return;
+            }
+            resp.sendRedirect(req.getContextPath() + "/");
             return;
         }
         // User logged out

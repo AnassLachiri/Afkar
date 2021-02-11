@@ -16,6 +16,7 @@
     <% if(((ArrayList<Story>) request.getAttribute("stories")).size()>0) { %>
         <% for(Story story: (ArrayList<Story>) request.getAttribute("stories")) {%>
             <div class="story">
+                <img src="story_image?image=<%= story.getImage() %>" width="300" height="300">
                 <h3><%= story.getTitle() %></h3>
                 <h5><%= story.getSubtitle() %></h5>
                 <a href="story?uuid=<%= story.getUuid() %>">Read the story</a>
