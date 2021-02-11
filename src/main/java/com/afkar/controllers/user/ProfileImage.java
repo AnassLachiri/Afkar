@@ -1,4 +1,4 @@
-package com.afkar.controllers.story;
+package com.afkar.controllers.user;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -6,14 +6,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
-public class StoryImage extends HttpServlet {
-    public static final String DOWNLOAD_DIRECTORY = "story_images";
+public class ProfileImage extends HttpServlet {
+    public static final String DOWNLOAD_DIRECTORY = "profile_images";
     public String downloadPath;
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         downloadPath = getServletContext().getRealPath("") + File.separator + DOWNLOAD_DIRECTORY;
-
 
         if(req.getParameter("image") == null){
             resp.sendRedirect(req.getContextPath() + "/");

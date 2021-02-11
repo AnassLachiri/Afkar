@@ -13,7 +13,7 @@ import static com.afkar.middlewares.Auth.userLoggedIn;
 
 
 public class Register extends HttpServlet {
-    public static final String UPLOAD_DIRECTORY = "/profile_images";
+    public static final String UPLOAD_DIRECTORY = "profile_images";
     public String uploadPath;
 
     public String username = null;

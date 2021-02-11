@@ -117,7 +117,7 @@
 
     <servlet>
         <servlet-name>Profile</servlet-name>
-        <servlet-class>com.afkar.controllers.Profile</servlet-class>
+        <servlet-class>com.afkar.controllers.user.Profile</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>Profile</servlet-name>
@@ -127,7 +127,7 @@
 
     <servlet>
         <servlet-name>ProfileImage</servlet-name>
-        <servlet-class>com.afkar.controllers.ProfileImage</servlet-class>
+        <servlet-class>com.afkar.controllers.user.ProfileImage</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>ProfileImage</servlet-name>
@@ -141,6 +141,34 @@
     <servlet-mapping>
         <servlet-name>StoryImage</servlet-name>
         <url-pattern>/story_image</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StaticImage</servlet-name>
+        <servlet-class>com.afkar.controllers.StaticImage</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StaticImage</servlet-name>
+        <url-pattern>/static_image</url-pattern>
+    </servlet-mapping>
+
+
+    <servlet>
+        <servlet-name>StaticFile</servlet-name>
+        <servlet-class>com.afkar.controllers.StaticFile</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StaticFile</servlet-name>
+        <url-pattern>/static_file</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>Follow</servlet-name>
+        <servlet-class>com.afkar.controllers.user.Follow</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>Follow</servlet-name>
+        <url-pattern>/follow</url-pattern>
     </servlet-mapping>
 
 

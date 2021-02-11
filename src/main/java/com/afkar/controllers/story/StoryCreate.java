@@ -18,7 +18,7 @@ import java.io.IOException;
 import static com.afkar.middlewares.Auth.userLoggedIn;
 
 public class StoryCreate extends HttpServlet {
-    public static final String UPLOAD_DIRECTORY = "/story_images";
+    public static final String UPLOAD_DIRECTORY = "story_images";
     public String uploadPath;
 
     @Override

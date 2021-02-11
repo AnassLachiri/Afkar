@@ -4,7 +4,6 @@ import com.afkar.models.Comment;
 import com.afkar.models.Reply;
 import com.afkar.models.Story;
 import com.afkar.models.User;
-
 import java.sql.*;
 
 public class DAOUtils {

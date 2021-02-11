@@ -3,9 +3,8 @@
 <html>
 <head>
     <title>Register</title>
-    <style>
-        <%@ include file="../../css/style.css"%>
-    </style>
+    <link rel="stylesheet" href="static_file?file=css/register.css">
+
 
 </head>
 <body>

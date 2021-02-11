@@ -3,9 +3,8 @@
 <html>
 <head>
     <title>Login</title>
-    <style>
-        <%@ include file="../../css/style.css"%>
-    </style>
+    <link rel="stylesheet" href="static_file?file=css/login.css">
+
 </head>
 <body>
     <h1>Login</h1>

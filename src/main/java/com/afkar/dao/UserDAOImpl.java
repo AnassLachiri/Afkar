@@ -12,6 +12,7 @@ public class UserDAOImpl implements UserDAO{
     private static final String SQL_SELECT_PAR_ID = "SELECT * FROM users WHERE id = ?";
     private static final String SQL_SELECT_PAR_USERNAME = "SELECT * FROM users WHERE username = ?";
     private static final String SQL_INSERT = "INSERT INTO users (image, email, password, username, created_at) VALUES (?, ?, ?, ?, NOW())";
+    private static final String SQL_FOLLOW = "INSERT INTO followers (follower_id, user_id, created_at) VALUES (?, ?, NOW())";
 
     public UserDAOImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -40,6 +41,31 @@ public class UserDAOImpl implements UserDAO{
             throw new DAOException( e );
         } finally {
             close( resultSet, preparedStatement, connexion );
+        }
+    }
+
+    @Override
+    public void follow(User follower, String username) throws DAOException {
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        DAOFactory daoFactory = DAOFactory.getInstance();
+        UserDAO userDAO = daoFactory.getUserDao();
+        User user = userDAO.find(username);
+
+
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = prepareStatement( connexion, SQL_FOLLOW, true, follower.getId(), user.getId() );
+            int status = preparedStatement.executeUpdate();
+            if ( status == 0 ) {
+                throw new DAOException( "Error while creating the user, No line added to the table." );
+            }
+
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            close( preparedStatement, connexion );
         }
     }
 

@@ -1,4 +1,4 @@
-package com.afkar.controllers.story;
+package com.afkar.controllers;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -6,8 +6,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 
-public class StoryImage extends HttpServlet {
-    public static final String DOWNLOAD_DIRECTORY = "story_images";
+public class StaticFile extends HttpServlet {
+    public static final String DOWNLOAD_DIRECTORY = "static_files";
     public String downloadPath;
 
     @Override
@@ -15,22 +15,31 @@ public class StoryImage extends HttpServlet {
         downloadPath = getServletContext().getRealPath("") + File.separator + DOWNLOAD_DIRECTORY;
 
 
-        if(req.getParameter("image") == null){
+        String file = req.getParameter("file");
+
+        if(file == null){
             resp.sendRedirect(req.getContextPath() + "/");
         }
 
-        try (InputStream is = new FileInputStream(new File(downloadPath + File.separator + req.getParameter("image")))) {
+        String[] parts = file.split("/");
+        file = "";
+        for(int i= 0; i < parts.length - 1 ; i++){
+            file += parts[i];
+            file += File.separator;
+        }
+
+        file += parts[parts.length - 1];
+
+        try (InputStream is = new FileInputStream(new File(downloadPath + File.separator + file))) {
 
             // it is the responsibility of the container to close output stream
             OutputStream os = resp.getOutputStream();
 
+            resp.setContentType("text/plain");
             if (is == null) {
 
-                resp.setContentType("text/plain");
                 os.write("Failed to send image".getBytes());
             } else {
-
-                resp.setContentType("image/jpeg");
 
                 byte[] buffer = new byte[1024];
                 int bytesRead;
