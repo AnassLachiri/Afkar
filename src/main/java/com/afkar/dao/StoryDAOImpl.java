@@ -23,6 +23,8 @@ public class StoryDAOImpl implements StoryDAO{
     private static final String SQL_DELETE_PAR_UUID = "DELETE FROM stories WHERE uuid = ?";
     private static final String SQL_SELECT_ALL_STORIES_BY_ID = "SELECT * FROM stories ORDER BY created_at DESC LIMIT ? OFFSET ? ";
     private static final String SQL_SELECT_PROFILE_STORIES_BY_ID = "SELECT * FROM stories WHERE user_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ? ";
+    private static final String SQL_SAVE_STORY = "INSERT INTO saved_stories (story_id, user_id, created_at) VALUES (?, ?, NOW())";
+    private static final String SQL_SELECT_SAVED_STORIES_USER_ID = "SELECT * FROM saved_stories WHERE user_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ? ";
 
     public StoryDAOImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -62,6 +64,29 @@ public class StoryDAOImpl implements StoryDAO{
         try {
             connexion = daoFactory.getConnection();
             preparedStatement = prepareStatement( connexion, SQL_UPDATE, true, story.getTitle(), story.getSubtitle() , story.getContent(), story.getKeywords(), story.getUuid());
+            int status = preparedStatement.executeUpdate();
+            if ( status == 0 ) {
+                throw new DAOException( "Error while creating the user, No line added to the table." );
+            }
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            close( preparedStatement, connexion );
+        }
+    }
+
+    @Override
+    public void saveStory(User user, String uuid) throws DAOException {
+        DAOFactory daoFactory = DAOFactory.getInstance();
+        StoryDAO storyDAO = daoFactory.getStoryDao();
+        Story story = storyDAO.find(uuid);
+
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = prepareStatement( connexion, SQL_SAVE_STORY, true, story.getId(), user.getId());
             int status = preparedStatement.executeUpdate();
             if ( status == 0 ) {
                 throw new DAOException( "Error while creating the user, No line added to the table." );
@@ -213,6 +238,45 @@ public class StoryDAOImpl implements StoryDAO{
                 throw new DAOException(e);
             } finally {
                 close(resultSet, preparedStatement, connexion);
+            }
+        }
+        return stories;
+    }
+
+    @Override
+    public ArrayList<Story> findSavedStories(User user, long page_count) throws DAOException {
+        if(page_count <= 1) page_count = 1;
+        long limit = 10;
+        long offset = limit * ( page_count -1 );
+
+        ArrayList<Story> stories = new ArrayList<Story>();
+
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+        ResultSet resultSet2 = null;
+        Story story = null;
+
+        if(user != null) {
+            try {
+                connexion = daoFactory.getConnection();
+                preparedStatement = prepareStatement(connexion, SQL_SELECT_SAVED_STORIES_USER_ID, false, user.getId(), limit, offset);
+                resultSet = preparedStatement.executeQuery();
+                while(resultSet.next()){
+                    preparedStatement = prepareStatement(connexion, SQL_SELECT_PAR_ID, false, resultSet.getLong("id"));
+                    resultSet2 = preparedStatement.executeQuery();
+                    if (resultSet2.next()) {
+                        do {
+                            story = mapStory(resultSet2);
+                            stories.add(story);
+                        } while (resultSet2.next());
+                    }
+                }
+            } catch (SQLException e) {
+                throw new DAOException(e);
+            } finally {
+                close(resultSet, preparedStatement, connexion);
+                close(resultSet2);
             }
         }
         return stories;
