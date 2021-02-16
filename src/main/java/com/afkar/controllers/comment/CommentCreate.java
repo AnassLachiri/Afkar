@@ -3,7 +3,6 @@ package com.afkar.controllers.comment;
 import com.afkar.dao.CommentDAO;
 import com.afkar.dao.DAOFactory;
 import com.afkar.dao.StoryDAO;
-import com.afkar.dao.UserDAO;
 import com.afkar.models.Comment;
 import com.afkar.models.Story;
 import com.afkar.models.User;
@@ -50,7 +49,6 @@ public class CommentCreate extends HttpServlet {
                 resp.sendRedirect(req.getContextPath() + "/story?uuid=" + story_uuid);
                 return;
             }
-
             System.out.println("User attribute in the session  returns null!!!");
         }
         // User not connected

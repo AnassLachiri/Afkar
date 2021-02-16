@@ -7,6 +7,7 @@ import com.afkar.models.User;
 import java.util.ArrayList;
 
 public interface StoryDAO {
+
     void create( Story story ) throws DAOException;
 
     void update( Story story ) throws DAOException;

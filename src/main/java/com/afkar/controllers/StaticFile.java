@@ -37,7 +37,6 @@ public class StaticFile extends HttpServlet {
 
             resp.setContentType("text/plain");
             if (is == null) {
-
                 os.write("Failed to send image".getBytes());
             } else {
 
