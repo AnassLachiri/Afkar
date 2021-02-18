@@ -1,0 +1,174 @@
+ :root {
+   --primary-color: #CEF6F2;
+ }
+
+  * {
+    box-sizing: border-box;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  
+  
+  .story-container {
+      margin-top: 100px;
+      height: calc(100vh - 70px);
+      width: 100vw;
+      display: flex;  
+  }
+
+
+  .panel {
+      width: 200px;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      align-items: center;
+      font-size: 18px;
+  }
+
+
+  .panel-subcontainer {
+    height: 100px;
+    position: fixed;
+  }
+
+ .likes, .comments, .bookmark {
+     padding: 5px;
+     cursor: pointer;
+ }
+
+ .likes:hover i, .likes .fas{
+   color: #f50057;
+ }
+
+
+ .title {
+     font-size: 36px;
+     margin-left: 50px;
+ }
+
+ .story-writer-photo {
+     width: 50px;
+     height: 50px;
+     border-radius: 50%;
+ }
+
+ .date {
+    color: gray;
+ }
+
+ .tiny-button {
+     background-color: aquamarine;
+     border: none;
+     color: gray;
+     font-size: 12px;
+ }
+
+.story-writer-info {
+    display: flex;
+    align-items: center;
+    margin-top: 50px;
+    margin-left: 50px;
+}
+
+.infos, .date{
+    padding: 0 3px 3px 10px; 
+}
+
+.story {
+    width: calc(100% - 200px);
+}
+
+.story-image {
+    width: 70%;
+    height: 350px;
+}
+
+.story-content {
+    margin: 60px 0 0 50px;
+}
+
+.story-content p {
+  margin-top: 50px;
+  font-size: 19px;
+  line-height: 30px;
+  width: 70%
+}
+
+
+.comment-sidebar {
+  width: 300px;
+  height: 100%;
+  position: fixed;
+  right: -300px;
+  display: flex;
+  flex-direction: column;
+  background-color: #CEF6F2;
+}
+
+.comment-sidebar.active {
+  right: 0;
+}
+
+.comment-sidebar h3 {
+  padding: 1.25rem;
+  margin-top: 50px;
+
+}
+
+.comment-sidebar textarea {
+  margin: 5px 0 0 20px ;
+  width: 250px;
+  height: 80px;
+}
+
+.comment-sidebar input {
+  margin: 5px 0 0 20px ;
+  background-color: black;
+  color: white;
+  border: none;
+  height: 30px;
+}
+
+
+.commenter-info {
+  margin: 30px 0 0 20px;
+  display: flex;
+  align-items: center;
+}
+
+.comment-sidebar p {
+  margin: 20px 0 0 20px;
+  background-color: lightgray;
+  width: 250px;
+  padding: 10px;
+}
+
+.commenter-photo {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+
+textarea {
+  padding: 10px;
+  font-size: 14px;
+  border: none;
+}
+
+
+@media (max-width: 600px){
+  .story-container {
+    width: 200px;
+  }
+
+  .comment-sidebar{
+    width: 100px;
+  }
+}
+

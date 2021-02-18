@@ -42,7 +42,11 @@ public class Home extends HttpServlet {
             StoryDAO storyDAO = daoFactory.getStoryDao();
             ArrayList<Story> stories = new ArrayList<Story>();
 
+
+
             stories = storyDAO.findAllStories(page_count);
+
+
 
             req.setAttribute("stories", stories);
             req.setAttribute("page", page_count);

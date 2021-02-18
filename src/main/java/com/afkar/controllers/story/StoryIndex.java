@@ -1,9 +1,6 @@
 package com.afkar.controllers.story;
 
-import com.afkar.dao.CommentDAO;
-import com.afkar.dao.DAOFactory;
-import com.afkar.dao.ReplyDAO;
-import com.afkar.dao.StoryDAO;
+import com.afkar.dao.*;
 import com.afkar.models.Comment;
 import com.afkar.models.Reply;
 import com.afkar.models.Story;
@@ -39,6 +36,7 @@ public class StoryIndex extends HttpServlet {
             CommentDAO commentDAO = daoFactory.getCommentDao();
             ReplyDAO replyDAO = daoFactory.getReplyDao();
             StoryDAO storyDAO = daoFactory.getStoryDao();
+            UserDAO userDAO = daoFactory.getUserDao();
 
             story = storyDAO.find(uuid);
             if(story == null){
@@ -56,19 +54,20 @@ public class StoryIndex extends HttpServlet {
             System.out.println(comments.size());
             System.out.println(replies.size());
 
-            User user = (User) req.getSession().getAttribute("user");
+            User author = userDAO.find(story.getUser_id());
 
-            req.setAttribute("title", story.getTitle());
-            req.setAttribute("subtitle", story.getSubtitle());
-            req.setAttribute("content", story.getContent());
-            req.setAttribute("uuid", story.getUuid());
-            req.setAttribute("user_id", story.getUser_id());
-            req.setAttribute("login_id", user.getId());
+            if(author != null) {
 
-            req.setAttribute("comments", comments);
-            req.setAttribute("replies", replies);
-            this.getServletContext().getRequestDispatcher("/WEB-INF/views/story.jsp").forward(req, resp);
-            return;
+
+                req.setAttribute("story", story);
+                req.setAttribute("author", author);
+
+
+                req.setAttribute("comments", comments);
+                req.setAttribute("replies", replies);
+                this.getServletContext().getRequestDispatcher("/WEB-INF/views/story.jsp").forward(req, resp);
+                return;
+            }
         }
         // User logged out
         resp.sendRedirect(req.getContextPath() + "/");

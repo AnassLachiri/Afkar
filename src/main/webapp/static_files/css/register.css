@@ -1,35 +1,64 @@
-/* Bordered form */
-form {
-    border: 3px solid #f1f1f1;
-}
-
-/* Full-width inputs */
-input{
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
+* {
     box-sizing: border-box;
-}
-
-/* Set a style for all buttons */
-button {
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    cursor: pointer;
+  }
+  
+  body {
+    margin: 0;
+    padding: 0;
+    background-color: pink;
+    font-family: 'Roboto',sans-serif;
+    background-image: url('../imgs/register.jpg');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+  }
+  
+  .my_container {
+    display: flex;
+    justify-content: center;
+    margin-top: 50px;
+    height: 100%;
     width: 100%;
-}
+  }
+  
+  .box {
+    height: 500px;
+    width: 400px;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 30px;
+    border-radius: 20px;
+  }
+  
+  input {
+    margin-top: 10px;
+    height: 30px;
+    padding: 10px;
+    font-size: 14px;
+  }
+  
+  label {
+    margin-top: 20px;
+  }
+  
+  .submit {
+    margin: 30px auto;
+    height: 40px;
+  }
 
-/* Add a hover effect for buttons */
-button:hover {
-    opacity: 0.8;
-}
 
-/* Add padding to containers */
-.container {
-    padding: 16px;
-}
+  .brand {
+    display: flex;
+    align-items: center;
+  }
+  
+  .brand img {
+    width: 45px;
+    height: 45px;
+    margin-left: 30px;
+  }
+
+  .brand-title {
+    font-size: 1.25rem;
+    margin: 5px;
+  }

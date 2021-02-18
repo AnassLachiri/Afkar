@@ -181,6 +181,25 @@
     </servlet-mapping>
 
 
+    <servlet>
+        <servlet-name>StaticCss</servlet-name>
+        <servlet-class>com.afkar.controllers.StaticCss</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StaticCss</servlet-name>
+        <url-pattern>/static_css</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>StaticJS</servlet-name>
+        <servlet-class>com.afkar.controllers.StaticJS</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StaticJS</servlet-name>
+        <url-pattern>/static_js</url-pattern>
+    </servlet-mapping>
+
+
 
 
 </web-app>

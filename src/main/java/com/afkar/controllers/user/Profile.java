@@ -40,15 +40,15 @@ public class Profile extends HttpServlet {
 
             ArrayList<Story> stories = new ArrayList<Story>();
 
-            User user = userDAO.find(username);
-            if(user != null) {
+            User profile = userDAO.find(username);
+            if(profile != null) {
 
                 stories = storyDAO.findProfileStories(username, page_count);
 
                 req.setAttribute("stories", stories);
                 req.setAttribute("page", page_count);
                 req.setAttribute("username", username);
-                req.setAttribute("user", user);
+                req.setAttribute("profile", profile);
 
 
                 // User logged in

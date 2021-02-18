@@ -18,7 +18,7 @@ public class DAOFactory {
     }
 
     public static DAOFactory getInstance() throws DAOConfigurationException {
-        String url = "jdbc:mysql://localhost:3306/afkar";
+        String url = "jdbc:mysql://localhost:3306/afkar?useSSL=false";
         String driver = "com.mysql.cj.jdbc.Driver";
         String username = "root";
         String password = "password";

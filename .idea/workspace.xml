@@ -34,6 +34,7 @@
     <option name="CUSTOM_FILTER" />
   </component>
   <component name="ProjectId" id="1miBiem1TKz9PaVptujTObPq8GI" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -42,7 +43,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/src/main/java/com/afkar" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/static_files" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/main/webapp/static_images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="nodejs_package_manager_path" value="npm" />
     <property name="project.structure.last.edited" value="Modules" />
@@ -52,11 +53,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/src/main/webapp/static_files" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/static_files/css" />
-      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
       <recent name="$PROJECT_DIR$/src/main/webapp/static_images" />
-      <recent name="$PROJECT_DIR$/src/main/webapp" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/static_files/js" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/static_files/css" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/static_files" />
+      <recent name="$PROJECT_DIR$/src/main/webapp/WEB-INF" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/src/main/webapp/static_files" />
@@ -64,6 +65,9 @@
       <recent name="$PROJECT_DIR$/src/main/resources" />
       <recent name="$PROJECT_DIR$/src/main/webapp" />
       <recent name="$PROJECT_DIR$/src/main/webapp/css" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="com.afkar.controllers" />
     </key>
   </component>
   <component name="RunDashboard">
