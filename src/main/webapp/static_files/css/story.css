@@ -10,46 +10,50 @@
     margin: 0;
     padding: 0;
     font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
   }
 
   
   
   .story-container {
       margin-top: 100px;
-      height: calc(100vh - 70px);
       width: 100vw;
       display: flex;  
+      justify-content: center;
   }
 
 
   .panel {
-      width: 200px;
+      width: 300px;
       display: flex;
-      justify-content: center;
       flex-direction: column;
-      align-items: center;
-      font-size: 18px;
   }
 
+  .panel h2 {
+    color : gray;
+    font-size: 20px;
+  }
 
-  .panel-subcontainer {
-    height: 100px;
+  .panel-content {
     position: fixed;
   }
 
- .likes, .comments, .bookmark {
-     padding: 5px;
-     cursor: pointer;
- }
-
- .likes:hover i, .likes .fas{
-   color: #f50057;
- }
 
 
  .title {
      font-size: 36px;
-     margin-left: 50px;
+     margin-left: 120px;
+ }
+
+ .story {
+   width: calc(100% - 300px);
+ }
+
+
+
+ .story h2 {
+  margin-left: 120px;
+  color: gray;
  }
 
  .story-writer-photo {
@@ -73,62 +77,60 @@
     display: flex;
     align-items: center;
     margin-top: 50px;
-    margin-left: 50px;
+    margin-left: 120px;
 }
 
 .infos, .date{
     padding: 0 3px 3px 10px; 
 }
 
-.story {
-    width: calc(100% - 200px);
-}
 
 .story-image {
-    width: 70%;
+    width: 80%;
     height: 350px;
 }
 
 .story-content {
-    margin: 60px 0 0 50px;
+    margin: 60px 0 0 120px;
 }
 
 .story-content p {
   margin-top: 50px;
   font-size: 19px;
   line-height: 30px;
-  width: 70%
+  width: 80%
 }
 
 
-.comment-sidebar {
+.comment-section {
   width: 300px;
-  height: 100%;
-  position: fixed;
-  right: -300px;
   display: flex;
   flex-direction: column;
-  background-color: #CEF6F2;
 }
 
-.comment-sidebar.active {
-  right: 0;
+
+hr {
+  margin-left: 120px;
+  width: 75%
 }
 
-.comment-sidebar h3 {
-  padding: 1.25rem;
-  margin-top: 50px;
 
+.comment-section h3 {
+  margin: 30px 0 20px 120px;
+  font-size: 22px;
+ 
 }
 
-.comment-sidebar textarea {
-  margin: 5px 0 0 20px ;
-  width: 250px;
+.comment-section textarea {
+  margin: 5px 0 0 120px ;
+  width: 600px;
   height: 80px;
+  font-size: 16px;
+  padding: 10px;
 }
 
-.comment-sidebar input {
-  margin: 5px 0 0 20px ;
+.comment-section input {
+  margin: 5px 0 0 120px ;
   background-color: black;
   color: white;
   border: none;
@@ -136,39 +138,115 @@
 }
 
 
-.commenter-info {
-  margin: 30px 0 0 20px;
-  display: flex;
-  align-items: center;
+.comment {
+    margin: 30px 0 0 120px;
+    display: flex;
 }
 
-.comment-sidebar p {
-  margin: 20px 0 0 20px;
-  background-color: lightgray;
-  width: 250px;
-  padding: 10px;
+.reply {
+  margin: 30px 0 0 180px;
+  display: flex; 
 }
 
-.commenter-photo {
+
+.comment img , .reply img{
   width: 40px;
   height: 40px;
   border-radius: 50%;
 }
 
-textarea {
-  padding: 10px;
+.comment span, .reply span {
   font-size: 14px;
-  border: none;
+  cursor: pointer;
+  
 }
 
+.comment a, .reply a {
+  color: black;
+  text-decoration: none;
+}
+
+.comment p , .reply p{
+  margin-top: 3px;
+}
+
+.comment-content{
+  /*height: 60px;*/
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.ccc {
+  margin-top: -10px;
+}
+
+.ccc a{
+  font-size: 15px;
+}
+
+
+.reply-dialog {
+  margin-left: 35px;
+  width: 400px;
+  height: 50px;
+  font-size: 16px;
+  padding: 10px;
+  margin-bottom: 80px;
+  /*display: blo;*/
+}
+
+.reply-dialog.active {
+  display: block;
+}
+
+
+
+.like-nd-save,.controls {
+  margin-top: 20px;
+}
+
+.panel-content h2 {
+  padding: 20px;
+}
+
+.panel-story{
+  margin-top: 30px;
+  display: flex;
+}
+
+
+.panel-story img{
+  height: 50px;
+  width: 50px;
+}
+
+.panel-story a {
+  margin-left: 10px;
+  text-decoration: none;
+  color: black;
+  cursor: pointer;
+}
+
+.panel-story a:nth-child(1) {
+  color: gray;
+}
+
+.o {
+  display: flex;
+  flex-direction: column;
+}
 
 @media (max-width: 600px){
   .story-container {
     width: 200px;
   }
 
-  .comment-sidebar{
-    width: 100px;
-  }
+  .comment-section textarea {
+    width: 200px;
+    height: 50px;
+  } 
+
 }
 

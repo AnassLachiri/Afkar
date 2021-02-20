@@ -2,8 +2,10 @@ package com.afkar.dao;
 
 import com.afkar.models.Comment;
 import com.afkar.models.Reply;
+import com.afkar.models.User;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface CommentDAO {
     void create( Comment comment ) throws DAOException;

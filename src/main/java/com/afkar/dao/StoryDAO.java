@@ -20,6 +20,8 @@ public interface StoryDAO {
 
     void saveStory( User user, String uuid ) throws DAOException;
 
+    void likeStory( User user, String uuid ) throws DAOException;
+
     ArrayList<Story> findAllStories(long page_count) throws DAOException;
 
     ArrayList<Story> findProfileStories(String username, long page_count) throws DAOException;

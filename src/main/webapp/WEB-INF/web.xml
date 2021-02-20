@@ -199,6 +199,15 @@
         <url-pattern>/static_js</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>StoryLike</servlet-name>
+        <servlet-class>com.afkar.controllers.story.StoryLike</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StoryLike</servlet-name>
+        <url-pattern>/story_like</url-pattern>
+    </servlet-mapping>
+
 
 
 

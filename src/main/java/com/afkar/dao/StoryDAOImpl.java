@@ -24,7 +24,12 @@ public class StoryDAOImpl implements StoryDAO{
     private static final String SQL_SELECT_ALL_STORIES_BY_ID = "SELECT * FROM stories ORDER BY created_at DESC LIMIT ? OFFSET ? ";
     private static final String SQL_SELECT_PROFILE_STORIES_BY_ID = "SELECT * FROM stories WHERE user_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ? ";
     private static final String SQL_SAVE_STORY = "INSERT INTO saved_stories (story_id, user_id, created_at) VALUES (?, ?, NOW())";
+    private static final String SQL_SELECT_SAVED_STORIES = "SELECT * FROM saved_stories WHERE story_id = ? AND user_id = ?";
     private static final String SQL_SELECT_SAVED_STORIES_USER_ID = "SELECT * FROM saved_stories WHERE user_id = ? ORDER BY created_at DESC LIMIT ? OFFSET ? ";
+    private static final String SQL_LIKE_STORY = "INSERT INTO story_likes (story_id, user_id, created_at) VALUES (?, ?, NOW())";
+    private static final String SQL_SELECT_STORY_LIKES = "SELECT * FROM story_likes WHERE story_id = ? AND user_id = ?";
+    private static final String SQL_INCREMENT_STORY_TOTAL_LIKES = "UPDATE stories SET total_likes = total_likes + 1 WHERE id = ?";
+
 
     public StoryDAOImpl(DAOFactory daoFactory) {
         this.daoFactory = daoFactory;
@@ -83,13 +88,54 @@ public class StoryDAOImpl implements StoryDAO{
 
         Connection connexion = null;
         PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
 
         try {
             connexion = daoFactory.getConnection();
-            preparedStatement = prepareStatement( connexion, SQL_SAVE_STORY, true, story.getId(), user.getId());
-            int status = preparedStatement.executeUpdate();
-            if ( status == 0 ) {
-                throw new DAOException( "Error while creating the user, No line added to the table." );
+            preparedStatement = prepareStatement( connexion, SQL_SELECT_SAVED_STORIES, true, String.valueOf(story.getId()), String.valueOf(user.getId()));
+            resultSet = preparedStatement.executeQuery();
+            if ( !resultSet.next() ) {
+                preparedStatement = prepareStatement( connexion, SQL_SAVE_STORY, true, String.valueOf(story.getId()-1), String.valueOf(user.getId()));
+                int status = preparedStatement.executeUpdate();
+                if ( status == 0 ) {
+                    throw new DAOException( "Error while creating the user, No line added to the table." );
+                }
+            }
+
+        } catch ( SQLException e ) {
+            throw new DAOException( e );
+        } finally {
+            close( preparedStatement, connexion );
+        }
+    }
+
+    @Override
+    public void likeStory(User user, String uuid) throws DAOException {
+        DAOFactory daoFactory = DAOFactory.getInstance();
+        StoryDAO storyDAO = daoFactory.getStoryDao();
+        Story story = storyDAO.find(uuid);
+
+
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        try {
+            connexion = daoFactory.getConnection();
+            preparedStatement = prepareStatement( connexion, SQL_SELECT_STORY_LIKES, true, story.getId(), user.getId());
+            resultSet = preparedStatement.executeQuery();
+            if ( !resultSet.next() ) {
+                preparedStatement = prepareStatement( connexion, SQL_LIKE_STORY, true, String.valueOf(story.getId()-1), user.getId());
+                int status = preparedStatement.executeUpdate();
+                if ( status == 0 ) {
+                    throw new DAOException( "Error while creating the user, No line added to the table." );
+                }
+
+                preparedStatement = prepareStatement( connexion, SQL_INCREMENT_STORY_TOTAL_LIKES, true, story.getId());
+                status = preparedStatement.executeUpdate();
+                if ( status == 0 ) {
+                    throw new DAOException( "Error while creating the user, No line added to the table." );
+                }
             }
         } catch ( SQLException e ) {
             throw new DAOException( e );

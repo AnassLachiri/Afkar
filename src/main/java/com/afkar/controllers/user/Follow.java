@@ -26,10 +26,12 @@ public class Follow extends HttpServlet {
                     DAOFactory daoFactory = DAOFactory.getInstance();
                     UserDAO userDAO = daoFactory.getUserDao();
                     userDAO.follow(user, username);
+                    resp.sendRedirect(req.getContextPath() + "/profile?username=" + username);
                     return;
                 }
             }
         }
+        resp.sendRedirect(req.getContextPath() + "/");
         return;
     }
 }

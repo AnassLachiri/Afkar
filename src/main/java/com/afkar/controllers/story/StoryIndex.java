@@ -47,12 +47,25 @@ public class StoryIndex extends HttpServlet {
             ArrayList<Comment> comments = new ArrayList<Comment>();
             comments = commentDAO.findComments(story.getId());
             HashMap<Long, ArrayList<Reply>> replies = new HashMap<Long, ArrayList<Reply>>();
-            for(Comment comment: comments){
-                replies.put(comment.getId(), replyDAO.findReplies(comment.getId()));
 
+            HashMap<Long, User> commentUsers = new HashMap<Long, User>();
+            HashMap<Long, User> replyUsers = new HashMap<Long, User>();
+            User tempUser;
+
+            ArrayList<Reply> tempReplies;
+            for(Comment comment: comments){
+                tempReplies = replyDAO.findReplies(comment.getId());
+                replies.put(comment.getId(), tempReplies);
+                tempUser = userDAO.find(comment.getUser_id());
+                commentUsers.put(comment.getId(), tempUser);
+                for(Reply reply: tempReplies){
+                    tempUser = userDAO.find(reply.getUser_id());
+                    replyUsers.put(reply.getId(), tempUser);
+                }
             }
-            System.out.println(comments.size());
-            System.out.println(replies.size());
+
+
+
 
             User author = userDAO.find(story.getUser_id());
 
@@ -65,6 +78,9 @@ public class StoryIndex extends HttpServlet {
 
                 req.setAttribute("comments", comments);
                 req.setAttribute("replies", replies);
+
+                req.setAttribute("commentUsers", commentUsers);
+                req.setAttribute("replyUsers", replyUsers);
                 this.getServletContext().getRequestDispatcher("/WEB-INF/views/story.jsp").forward(req, resp);
                 return;
             }
