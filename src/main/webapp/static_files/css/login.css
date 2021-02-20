@@ -1,7 +1,7 @@
 * {
     box-sizing: border-box;
   }
-  
+
   body {
     margin: 0;
     padding: 0;
@@ -10,7 +10,7 @@
     background-image: url('static_image?image=login.jpg');
     background-size: cover;
   }
-  
+
   .my_container {
     display: flex;
     justify-content: center;
@@ -18,7 +18,7 @@
     height: 100%;
     width: 100%;
   }
-  
+
   .box {
     height: 400px;
     width: 350px;
@@ -28,30 +28,33 @@
     padding: 30px;
     border-radius: 5px;
   }
-  
+
+  .box h3 {
+    color: grey;
+    text-align: center;
+  }
+
   input {
     margin-top: 10px;
     height: 30px;
     padding: 10px;
     font-size: 14px;
   }
-  
+
   label {
     margin-top: 20px;
   }
-  
+
   .submit {
     margin: 30px auto;
     height: 40px;
   }
 
-
-
   .brand {
     display: flex;
     align-items: center;
   }
-  
+
   .brand img {
     width: 45px;
     height: 45px;

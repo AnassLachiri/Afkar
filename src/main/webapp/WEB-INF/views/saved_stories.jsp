@@ -13,7 +13,7 @@
 
 <jsp:include page="navbar.jsp"/>
 <br>
-<h1 style="text-align: center">Saved Stories</h1>
+<h2 style="text-align: center; color: gray;">Les Stories Sauvegardés</h2>
 
 <div class="container">
 
@@ -47,7 +47,7 @@
 
 </div>
 
-<div class="pagination">
+<div class="pagination d-flex justify-content-center align-items-center">
     <a href="?page=<%= (((long)request.getAttribute("page")) -1) %>">&#60;&#60; Last Page </a> - <span> <%= request.getAttribute("page") %> </span> - <a href="?page=<%= (1+(long)request.getAttribute("page")) %>"> Next Page &#62;&#62;</a>
 </div>
 

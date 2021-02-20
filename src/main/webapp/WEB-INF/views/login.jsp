@@ -27,13 +27,16 @@
     <% if(session.getAttribute("login_error")!=null){ %>
     <h3 style="text-align: center;"><%= session.getAttribute("login_error") %></h3>
     <% } %>
-    <form class="box" action="login" method="post">
+    <form action="login" method="post">
+      <div class="box">
+        <h3>Se connecter</h3>
         <label><i class="far fa-user"></i>  Nom de l'utilisateur: </label>
         <input type="text" name="username" required>
         <label><i class="fas fa-lock"></i>  Mot de passe: </label>
         <input type="password" name="password" required>
         <input type="submit" name="submit" class="submit btn btn-dark" value="Se connecter">
     </form>
+  </div>
 </div>
 
 

@@ -54,7 +54,7 @@
             </div>
 
             <br>
-            <div class="pagination">
+            <div class="pagination d-flex justify-content-center align-items-center">
                 <a href="profile?username=<%= request.getAttribute("username") %>&page=<%= (((long)request.getAttribute("page")) -1) %>">&#60;&#60; Last Page </a> - <span> <%= request.getAttribute("page") %> </span> - <a href="profile?username=<%= request.getAttribute("username") %>&page=<%= (1+(long)request.getAttribute("page")) %>"> Next Page &#62;&#62;</a>
             </div>
 
