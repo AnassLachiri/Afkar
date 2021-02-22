@@ -22,7 +22,7 @@
     </a>
 
     <ul class="navbar-nav ml-auto ">
-        <form class="form-inline search-bar" action="/search" method="GET">
+        <form class="form-inline search-bar" action="search" method="GET">
             <input class="form-control" type="search" placeholder="Search" aria-label="Search" name="search_text">
             <button class="btn btn-outline-info" type="submit">
                 <svg class="bi bi-search" width="1em" height="1em" viewBox="0 0 16 16" fill="currentColor" xmlns="http://www.w3.org/2000/svg">

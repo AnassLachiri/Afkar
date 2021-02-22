@@ -208,6 +208,15 @@
         <url-pattern>/story_like</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>StorySearch</servlet-name>
+        <servlet-class>com.afkar.controllers.story.StorySearch</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>StorySearch</servlet-name>
+        <url-pattern>/search</url-pattern>
+    </servlet-mapping>
+
 
 
 

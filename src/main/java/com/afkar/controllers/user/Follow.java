@@ -1,13 +1,11 @@
 package com.afkar.controllers.user;
 
-import com.afkar.Utils;
 import com.afkar.dao.DAOFactory;
 import com.afkar.dao.UserDAO;
 import com.afkar.models.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.*;
-import java.io.File;
 import java.io.IOException;
 
 import static com.afkar.middlewares.Auth.userLoggedIn;

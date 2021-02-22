@@ -26,6 +26,8 @@ public interface StoryDAO {
 
     ArrayList<Story> findProfileStories(String username, long page_count) throws DAOException;
 
+    ArrayList<Story> searchStories(String search_term, long page_count) throws DAOException;
+
     ArrayList<Story> findSavedStories(User user, long page_count) throws DAOException;
 
 }

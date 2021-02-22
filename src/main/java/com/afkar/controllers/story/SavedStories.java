@@ -48,8 +48,8 @@ public class SavedStories extends HttpServlet {
             return;
         }
         // User logged out
-        this.getServletContext().getRequestDispatcher("/WEB-INF/views/saved_stories.jsp").forward(req, resp);
-
+        resp.sendRedirect(req.getContextPath() + "/");
+        return;
     }
 
     @Override
