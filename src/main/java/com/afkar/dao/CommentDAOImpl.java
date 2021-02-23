@@ -125,4 +125,22 @@ public class CommentDAOImpl implements CommentDAO{
             close( preparedStatement, connexion );
         }
     }
+
+
+    // this function is for testing
+    public long countAll() throws DAOException, SQLException {
+
+        Connection connexion = null;
+        PreparedStatement preparedStatement = null;
+        ResultSet resultSet = null;
+
+        connexion = daoFactory.getConnection();
+        preparedStatement = prepareStatement( connexion, "SELECT count(*) as hy FROM comments", false );
+        resultSet = preparedStatement.executeQuery();
+        if ( resultSet.next() ) {
+            return resultSet.getLong("hy");
+        }
+        return 0l;
+    }
+
 }
